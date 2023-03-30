@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <title>Login</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="shorcut icon" type="text/png " th:href="@{/images/icono_alsea.png}">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/estilo.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/js/boton.css}">
+    <link rel="stylesheet" th:href="@{/js/acciones.js}">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+
+    <head th:replace="layout/layout :: head"></head>
+</head>
+
+<body>
+
+
+
+<div id="login" class="signin-card">
+    <div class="logo-image">
+        <img src="https://revistalaneta.com/wp-content/uploads/2020/06/alisa.png" alt="Logo" title="Logo" width="330">
+    </div>
+    <br><br>
+    <form th:action="@{/login}" method="post">
+        <div id="form-login-username" class="form-group">
+            <input id="username" class="form-control" name="username" placeholder="Ingrese usuario o email" type="text"
+                   size="18"/>
+            <span class="form-highlight"></span>
+            <span class="form-bar"></span>
+        </div>
+        <div id="form-login-password" class="form-group">
+            <input id="password" class="form-control" name="password" placeholder="Ingrese Contraseña" type="password"
+                   size="18">
+            <span class="form-highlight"></span>
+            <span class="form-bar"></span>
+        </div>
+
+        <div>
+            <input class="btn btn-block btn-info ripple-effect" type="submit" name="Submit" alt="sign in"/>
+                    </div>
+
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+    </form>
+</div>
+</div>
+
+</body>
+</html>

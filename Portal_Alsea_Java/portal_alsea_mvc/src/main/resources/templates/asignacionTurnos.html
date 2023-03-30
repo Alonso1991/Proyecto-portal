@@ -1,0 +1,175 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Menú Principal</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <link rel="shorcut icon" type="text/png " th:href="@{/images/icono_alsea.png}">
+    <link th:href="@{/css/styles.css}" rel="stylesheet"/>
+    <link th:href="@{/css/form.css}" rel="stylesheet"/>
+    <link th:href="@{/css/dropdown.css}" rel="stylesheet"/>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
+    <link rel="manifest" href="/site.webmanifest">
+
+
+</head>
+<body class="sb-nav-fixed">
+<nav th:replace="propinas::logout">
+</nav>
+<p>
+<div id="layoutSidenav">
+    <div id="layoutSidenav_nav">
+        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+            <div class="sb-sidenav-menu">
+                <div class="nav">
+                    <p/>
+                    <!--Roles-->
+                    <div class="sb-sidenav-menu-heading">Administración</div>
+                    <a class="nav-link" href="/roles/usuarios">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-user-pen"></i></div>
+                        Usuarios/Roles
+                    </a>
+                    <!--Upsizes -->
+                    <div class="sb-sidenav-menu-heading">Menús</div>
+                    <a class="nav-link" href="/upsizes/index">
+                        <div class="sb-nav-link-icon"><i class="fas fa-chart-line"></i></div>
+                        Upsizes
+                    </a>
+                    <!--Propinas -->
+                    <a class="nav-link" href="/propinas/index?id=1">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-sack-dollar"></i></div>
+                        Propinas
+                    </a>
+                    <!--Gestion de Turnos -->
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts"
+                       aria-expanded="false" aria-controls="collapseLayouts">
+                        <div class="fa-solid fa-people-line"><i class="fas fa-columns"></i></div>
+                        Gestión de turnos
+                        <div class="sb-sidenav-collapse-arrow"><i class="fa fa-chevron-circle-down"
+                                                                  aria-hidden="true"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
+                         data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="/turnos/grabar/turnos">Crear Turnos</a>
+                            <a class="nav-link" href="/turnos/crear/employee">Crear Trabajadores</a>
+                            <a class="nav-link" href="/turnos/index">Ver Turnos</a>
+                            <a class="nav-link" href="/turnos/historicos"> Historicó de turnos</a>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+                <h1 class="mt-4">Menú Alsea</h1>
+                <ol class="breadcrumb mb-4">
+                    <li class="breadcrumb-item active">Gestión de turnos</li>
+                </ol>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <center><i class="fa-solid fa-people-group"></i>
+                            Asignación de Turnos
+                        </center>
+                        <span font="white" class="card text-white bg-dark" th:if="${transaccion == true}">¡El turno ha sido guardado con éxito! </span>
+                        <span font="white" class="card text-white bg-dark" th:if="${transaccion == false}">¡Error al intentar guardar el turno! </span>
+                        <br>
+                        <section>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="well well-sm">
+                                            <form class="form-horizontal" method="post"
+                                                  th:action="@{../grabar/turnos}">
+
+                                                <fieldset>
+
+                                                    <select class="form-control" type="text"
+                                                            name="trabajadores" id="child-dropdown">
+                                                        <option> Seleccione Trabajador</option>
+                                                        <option> Alambrito Delgado</option>
+                                                        <option> Rosa Tapia</option>
+                                                        <option> Ruben Hidalgo</option>
+                                                        <option> Gustavo Hernandez</option>
+                                                    </select>
+                                                    <br>
+
+                                                    <!-- Para mostrar el contenido -->
+                                                    <script src="/js/acciones.js"></script>
+                                                    <b>Activar turno</b>
+                                                    <input type="checkbox" name="check" id="check" value="1"
+                                                           onchange="javascript:showContent()"/>
+                                                    <div id="content" style="display: none;">
+                                                        <center>
+                                                            <div class="form-group">
+                                                                <i class="fa fa-commenting bigicon"
+                                                                   aria-hidden="true"></i>
+                                                                <div class="col-md-8">
+                                                                    <textarea class="form-control" id="detalle"
+                                                                              name="detalle"
+                                                                              placeholder="Ingrese el detalle del turno aquí"
+                                                                              rows="2"></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </center>
+
+                                                        <div class="form-group">
+                                                            <div class="col-md-12 text-center">
+                                                                <input type="submit" class="btn btn-primary btn-lg"
+                                                                       value="Guardar Turno"
+                                                                />
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="py-4 bg-light mt-auto">
+            <div class="container-fluid px-4">
+                <div class="d-flex align-items-center justify-content-between small">
+                    <div class="text-muted">Copyright &copy; Alsea Cono Sur 2022</div>
+                    <div>
+                        <a href="#">Privacy Policy</a>
+                        &middot;
+                        <a href="#">Terms &amp; Conditions</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+<script src="/js/menu.js"></script>
+<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/ec53c7dc4c.js" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+.lbl{
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    background: rgb(73, 134, 184);
+    border-radius: 100px;
+    cursor: pointer;
+    position: relative;
+    }
+
+    .lbl::after{
+        content: '';
+        display: block;
+        width: 18px;
+        height: 18px;
+        background: rgb(184, 178, 178);
+        border-radius:100px ;
+        position: absolute;
+        top: 1px;
+        left: 4px;
+        transition: 0.4s;
+    }
+
+    #switch:checked + .lbl::after{
+        left: 19px;
+    }
+    #switch:checked + .lbl{
+        background: green;
+    }
+
+    #switch{
+        display: none;
+    }
+
+.remember{
+    text-align: left    ;
+}

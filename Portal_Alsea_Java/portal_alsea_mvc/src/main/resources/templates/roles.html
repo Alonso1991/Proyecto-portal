@@ -1,0 +1,209 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:href="http://www.w3.org/1999/xhtml">
+<head th:fragement="head">
+    <title>Menú Principal</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <link rel="shorcut icon" type="text/png " th:href="@{/images/icono_alsea.png}">
+    <link th:href="@{/css/styles.css}" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{/fonts/style.css}"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!------------------------SELECT Y MULTISELECT---------------------------->
+    <link th:href="@{/css/styles-select.css}" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet"/>
+
+    <!------------------------LINKS BOTONES EDITAR TABLA------------------------------------>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"/>
+
+
+</head>
+<body class="sb-nav-fixed">
+<nav th:replace="propinas::logout">
+</nav>
+<p>
+<div id="layoutSidenav">
+    <div id="layoutSidenav_nav">
+        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+            <div class="sb-sidenav-menu">
+                <div class="nav">
+                    </p>
+                    <!--Roles-->
+                    <div class="sb-sidenav-menu-heading">Administración</div>
+                    <a class="nav-link" href="/roles/usuarios">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-user-pen"></i></div>
+                        Usuarios/Roles
+                    </a>
+                    <!--Upsizes -->
+                    <div class="sb-sidenav-menu-heading">Menús</div>
+                    <a class="nav-link" href="/upsizes/index">
+                        <div class="sb-nav-link-icon"><i class="fas fa-chart-line"></i></div>
+                        Upsizes
+                    </a>
+                    <!--Propinas -->
+                    <a class="nav-link" href="/propinas/index?id=1">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-sack-dollar"></i></div>
+                        Propinas
+                    </a>
+                    <!--Gestion de Turnos -->
+
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts"
+                       aria-expanded="false" aria-controls="collapseLayouts">
+                        <div class="fa-solid fa-people-line"><i class="fas fa-columns"></i></div>
+                        Gestión de turnos
+                        <div class="sb-sidenav-collapse-arrow"><i class="fa fa-chevron-circle-down"
+                                                                  aria-hidden="true"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
+                         data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="/turnos/grabar/turnos">Crear Turnos</a>
+                            <a class="nav-link" href="/turnos/crear/employee">Crear Trabajadores</a>
+                            <a class="nav-link" href="/turnos/index">Ver Turnos</a>
+                            <a class="nav-link" href="/turnos/historicos"> Historicó de turnos</a>
+
+                        </nav>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+                <h1 class="mt-4">Menú Alsea</h1>
+                <ol class="breadcrumb mb-4">
+                    <li class="breadcrumb-item active">Asignacion de Roles</li>
+                </ol>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <center><i class="fa-solid fa-people-group"></i>
+                            Usuarios y Roles
+                        </center>
+                        <br>
+                        <section>
+
+                            <div class="container">
+                                <div id="toolbar">
+                                    <!-- Enlace para abrir el modal -->
+                                    <button onclick="window.location.href='/turnos/crear/employee'" type="button" class="btn btn-primary" data-toggle="modal"
+                                    ><i class="fa-sharp fa-solid fa-user-plus"></i>Agregar trabajadores
+                                    </button>
+
+                                        <div id="miModal" class="modal fade" role="dialog">
+                                            <div style="box-shadow: 0px 10px 10px black; border-radius: 15px; "
+                                                 class="modal-dialog">
+                                                <!-- Contenido del modal -->
+                                                <div class="modal-content">
+                                                    <div class="panel panel-default">
+                                                        <br>
+
+                                                        <div class="panel-heading">
+                                                            <center>Seleccione Rol</center>
+                                                        </div>
+                                                        <br>
+                                                        <div class="row justify-content-center">
+                                                            <div class="col-ms-6 d-flex justify-content-center align-items-center">
+                                                                <select class="js-select2" multiple="multiple" required>
+                                                                    <option value="" disabled selected><B>--SELECCIONE
+                                                                        AQUI--</B></option>
+                                                                    <option value="O1" data-badge="">Option1</option>
+                                                                    <option value="O2" data-badge="">Option2</option>
+                                                                    <option value="O3" data-badge="">Option3</option>
+                                                                    <option value="O4" data-badge="">Option4</option>
+
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    </form>
+
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-primary"
+                                                                data-dismiss="modal">
+                                                            Guardar
+                                                        </button>
+                                                        <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Cerrar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <br>
+                                    <table id="datatablesSimple" class="table table-bordered  display nowrap"
+                                           cellspacing="0"
+                                           width="100%">
+                                        <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Email</th>
+                                            <th>Rol</th>
+                                            <th>Status</th>
+                                            <th>Edición</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>Alonso Martinez</td>
+                                            <td>aimartinez@alsea.cl</td>
+                                            <td>Administrador</td>
+                                            <td>
+                                                <span class="badge badge-success">Activo</span>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
+                                                        data-target="#miModal">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                        </section>
+
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer th:replace="propinas::footer">
+        </footer>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+<script src="/js/menu.js"></script>
+<script src="/js/functionTables.js"></script>
+<script src="/js/datatables.js"></script>
+<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/ec53c7dc4c.js" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/table_edit.min.js"></script>
+<script src="/js/popper.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
+<script src="/js/main1.js"></script>
+
+
+</body>
+</html>
