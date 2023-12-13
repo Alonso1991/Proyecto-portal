@@ -1,5 +1,5 @@
 package com.alsea.portal.portalmvc.entity;
-
+/*
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import javax.persistence.Column;
@@ -45,3 +45,4 @@ public class TiendasUpsizeEntity {
         this.ip = ip;
     }
 }
+*/

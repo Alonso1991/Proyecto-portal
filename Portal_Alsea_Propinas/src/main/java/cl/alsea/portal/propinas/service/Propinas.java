@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface Propinas {
 
-   List<PropinasResponseDTO> obtienePropinas(Date initDate, Date endDate, String ip) throws SQLException;
+   List<PropinasResponseDTO> obtienePropinas(Date initDate, Date endDate) throws SQLException;
 }

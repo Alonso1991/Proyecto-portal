@@ -13,12 +13,13 @@ import java.util.List;
 @Service("ticketsService")
 public class PropinasService implements Propinas{
 
-    @Autowired
+
     PropinasDAO propinasDao;
 
     @Override
-    public List<PropinasResponseDTO> obtienePropinas(Date initDate, Date endDate,String ip) throws SQLException {
-        List<PropinasResponseDTO> response = propinasDao.getPropinas(initDate,endDate,ip);
+    public List<PropinasResponseDTO> obtienePropinas(Date initDate, Date endDate) throws SQLException {
+        propinasDao=new PropinasDAO();
+        List<PropinasResponseDTO> response = propinasDao.getPropinas(initDate,endDate);
 
 
         return response;

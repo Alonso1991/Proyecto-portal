@@ -1,5 +1,5 @@
 package com.alsea.portal.portalmvc.repository;
-
+/*
 import com.alsea.portal.portalmvc.entity.CajerosEntity;
 import com.alsea.portal.portalmvc.entity.EmployeesEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,3 +18,4 @@ public interface ICajerosRepository extends JpaRepository<CajerosEntity, String>
     @Query("Select ")
     List<CajerosEntity> getCajeros(int idArea);
 }
+*/

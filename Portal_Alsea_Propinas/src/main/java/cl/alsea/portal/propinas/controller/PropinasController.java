@@ -15,10 +15,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -34,18 +34,20 @@ public class PropinasController {
 
     @ApiOperation("Metodo recupera suma de propinas por fecha")
     @GetMapping(value = "/propinas/obtener", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<JSONObject> obtienePropinas(@RequestHeader("X-User-Agent") String dispositivo,
-                                                                     @RequestParam("initDate") Date dateInit,
-                                                                     @RequestParam("endDate") Date dateFin,
-                                                                     @RequestParam("ip") String ip) throws SQLException {
+    public ResponseEntity<JSONObject> obtienePropinas(               @RequestParam("initDate") Date dateInit,
+                                                                     @RequestParam("endDate") Date dateFin) {                                                                     {
 
         JSONObject objPropinas=new JSONObject();
         List<PropinasResponseDTO> propinasResponseDTO = new ArrayList<>();
 
 
-        propinasResponseDTO = obtienePropinas.obtienePropinas(dateInit,dateFin,ip);
+        try {
+            propinasResponseDTO = obtienePropinas.obtienePropinas(dateInit,dateFin);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         objPropinas.put("propinas", propinasResponseDTO);
         return new ResponseEntity<>(objPropinas, httpHeaders, HttpStatus.ACCEPTED);
     }
-
+    }
 }

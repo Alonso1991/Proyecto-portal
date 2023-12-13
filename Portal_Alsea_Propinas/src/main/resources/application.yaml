@@ -1,6 +1,6 @@
 spring:
   datasource:
-    username: dba
-    password: micros
-    driver-class-name: com.sybase.jdbc4.jdbc.SybDriver
-    url: dbc:sybase:Tds::2638?ServiceName=micros
+    username: root
+    password: user
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/propinas

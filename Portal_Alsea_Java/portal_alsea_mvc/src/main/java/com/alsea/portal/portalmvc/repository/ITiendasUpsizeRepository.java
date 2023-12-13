@@ -1,5 +1,5 @@
 package com.alsea.portal.portalmvc.repository;
-
+/*
 import com.alsea.portal.portalmvc.entity.CajerosEntity;
 
 import com.alsea.portal.portalmvc.entity.TiendasEntity;
@@ -15,3 +15,4 @@ public interface ITiendasUpsizeRepository  extends JpaRepository<TiendasUpsizeEn
 
 
 }
+*/

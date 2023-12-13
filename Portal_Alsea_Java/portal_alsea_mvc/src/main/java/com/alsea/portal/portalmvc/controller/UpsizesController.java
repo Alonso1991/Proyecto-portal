@@ -1,6 +1,6 @@
 package com.alsea.portal.portalmvc.controller;
 
-
+/*
 import com.alsea.portal.portalmvc.dto.UpsizeResponseDTO;
 import com.alsea.portal.portalmvc.model.Tiendas;
 import com.alsea.portal.portalmvc.model.UsuarioSesion;
@@ -62,3 +62,4 @@ public class UpsizesController {
     }
 
 }
+ */

@@ -69,7 +69,7 @@ public class PropinasService implements IPropinas {
 
         CloseableHttpClient httpclient = HttpClients.createDefault();
         //Generamos URL
-        String url = urlOrder + "?initDate=" + fecIni + "&endDate=" + fecFin + "&ip=" + ip;
+        String url = urlOrder + "?initDate=" + fecIni + "&endDate=" + fecFin;
         String jsonPropinas = null;
         try {
             System.out.println("url Propinas: " + url);
@@ -79,7 +79,6 @@ public class PropinasService implements IPropinas {
                         .setUri(new URI(url))
                         .setHeader(HttpHeaders.CONTENT_TYPE, "application/json")
                         .setHeader(HttpHeaders.CONNECTION, "keep-alive")
-                        .setHeader("X-User-Agent", "X-User-Agent")
                         .build();
 
             } catch (URISyntaxException e) {
