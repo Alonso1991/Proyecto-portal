@@ -43,8 +43,8 @@ public class PropinasController {
     }
 
     @GetMapping(value = "/buscar")
-    public String getPropinas(@RequestParam(value = "fecIni") @DateTimeFormat(pattern = "yyyy-MM-dd") String fecIni,
-                              @RequestParam(value = "fecFin") @DateTimeFormat(pattern = "yyyy-MM-dd") String fecFin,
+    public String getPropinas(@RequestParam(value = "initDate") @DateTimeFormat(pattern = "yyyy-MM-dd") String initDate,
+                              @RequestParam(value = "endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") String endDate,
                               @RequestParam(value = "tienda") String tienda,
                               Model model) {
         prop = new ArrayList<>();
@@ -52,8 +52,8 @@ public class PropinasController {
         model.addAttribute("listTiendas", tiendasForUser);
 
         //Busca propinas solo si estan todos los parametros
-        if (tienda != null && fecFin != null && fecIni != null) {
-            prop = propinas.getPropinas(fecIni, fecFin, tienda);
+        if (tienda != null && endDate != null && initDate != null) {
+            prop = propinas.getPropinas(initDate, endDate, tienda);
         }
         model.addAttribute("prop", prop);
 

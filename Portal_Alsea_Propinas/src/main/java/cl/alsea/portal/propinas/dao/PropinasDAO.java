@@ -1,10 +1,7 @@
 package cl.alsea.portal.propinas.dao;
 
 import cl.alsea.portal.propinas.dto.PropinasResponseDTO;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Repository;
 import java.sql.*;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.*;
@@ -22,18 +19,18 @@ public class PropinasDAO {
 
     private String pass = "user";
 
-    public List<PropinasResponseDTO> getPropinas(Date iniDate, Date endDate) throws SQLException {
+    public List<PropinasResponseDTO> getPropinas(Date initDate, Date endDate) throws SQLException {
         List<PropinasResponseDTO> response = new ArrayList<>();
         //Se declara archivo de propiedades
         Connection conn = null;
         try {
-            String iniDatestr = formatDate(iniDate);
+            String iniDatestr = formatDate(initDate);
             String endDatestr = formatDate(endDate);
             System.out.println("URL CONNECTION BD: "+ url);
             //Forma en que me funciono la conexion a Mysql
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
             //Restamos uno a la fecha porque si no query no toma el día inicial
-            String fecIni = formatDate(iniDate);
+
 
             //String dburl = "jdbc:sqlanywhere:uid=root;pwd=user;eng=mysql;database=propinas;links=tcpip(host=127.0.0.1)";
             System.out.println("Conectando: " + url + ";" + userName + ";" + pass);
@@ -43,7 +40,7 @@ public class PropinasDAO {
             ResultSet rs;
             Statement statement = conn.createStatement();
             //Consulta a BD
-            String query ="SELECT fecha_propina AS FECHA, SUM(cantidad_propinas) AS SUMA, COUNT(cantidad_propinas) AS CANT FROM propinas WHERE fecha_propina >= '"+fecIni+"' AND fecha_propina <='"+endDate+"' AND cantidad_propinas > 0 Group by FECHA Order by FECHA Desc";
+            String query ="SELECT fecha_propina AS FECHA, SUM(cantidad_propinas) AS SUMA, COUNT(cantidad_propinas) AS CANT FROM propinas WHERE fecha_propina >= '"+iniDatestr+"' AND fecha_propina <='"+endDatestr+"' AND cantidad_propinas > 0 Group by FECHA Order by FECHA Desc";
             System.out.println();
             //Consulta obtiene datos
             rs = statement.executeQuery(query);
@@ -58,7 +55,7 @@ public class PropinasDAO {
             System.out.println("Lista cargada");
 
 
-             } catch (SQLException e) {
+        } catch (SQLException e) {
             System.err.println("Error en la conexion a BD" + Arrays.toString(e.getStackTrace()));
             conn.close();
             System.out.println("Error en la conexion a BD" + Arrays.toString(e.getStackTrace()));
@@ -89,7 +86,7 @@ public class PropinasDAO {
 
     public String formatDate(Date date){
 
-        String pattern = "yyyy/MM/dd ";
+        String pattern = "yyyy/MM/dd";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         String strDate= simpleDateFormat.format(date);
         return strDate;

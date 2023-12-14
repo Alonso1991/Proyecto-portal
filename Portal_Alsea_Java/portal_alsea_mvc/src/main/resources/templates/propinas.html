@@ -125,34 +125,6 @@
                             <form th:action="@{buscar/}">
                                 <br>
                                 <div id="filtros" class="container">
-
-                           <!--         <div class="container text-left">
-                                        <div class="row justify-content-center">
-                                            <div class="col-lg-7">
-                                                <form action="#" class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="fecIni">Desde</label>
-                                                            <input type="text" class="form-control" id="fecIni"
-                                                                   placeholder="Fecha de inicio">
-                                                            <i class="fa-regular fa-calendar-check"
-                                                               aria-hidden="true"></i></div>
-                                                    </div>
-
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="fecFin">Hasta</label>
-                                                            <input type="text" class="form-control" id="fecFin"
-                                                                   placeholder="Fecha de termino">
-                                                            <i class="fa-regular fa-calendar-check"
-                                                               aria-hidden="true"></i>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-
-                                    </div>  -->
                                     <div class="m-0 row h-100 align-items-center justify-content-around ">
                                         <div class="display: inline-block">
                                             <div class="form-group row">
@@ -205,7 +177,7 @@
                             </button>
 
                             <table id="datatablesSimple" class="table table-bordered  display nowrap" cellspacing="0"
-                                   width="100%" th:name="PropinasResult" th:if="${prop!=null}">
+                                   width="100%" th:name="PropinasResult" >
                                 <thead>
                                 <tr>
                                     <td>Total propinas</td>
@@ -265,28 +237,28 @@
 
 
 <script>
-// date & time
-		$('#initDate').daterangepicker({
+    // date & time
+    $('#initDate').daterangepicker({
 
-			buttonClasses: ' btn',
-			applyClass: 'btn-primary',
-			cancelClass: 'btn-secondary',
+        buttonClasses: ' btn',
+        applyClass: 'btn-primary',
+        cancelClass: 'btn-secondary',
 
-			timePicker: true,
-			timePickerIncrement: 30,
-			locale: {
-			language: "es",
-				format: 'DD/MM/YYYY A'
-			}
-		}, function(start, end, label) {
-			$('#initDate .form-control').val( start.format('DD/MM/YYYY A') + ' / ' + end.format('DD/MM/YYYY  A'));
-		});
+        timePicker: true,
+        timePickerIncrement: 30,
+        locale: {
+            language: "es",
+            format: 'DD/MM/YYYY A'
+        }
+    }, function(start, end, label) {
+        $('#initDate .form-control').val( start.format('DD/MM/YYYY A') + ' / ' + end.format('DD/MM/YYYY  A'));
+    });
 
 </script>
 <script>
- $(document).ready(function () {
-    $('#example').DataTable();
-});
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
 
 </script>
 

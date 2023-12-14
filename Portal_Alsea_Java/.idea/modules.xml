@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/portal_alsea_mvc/PortalMVC.iml" filepath="$PROJECT_DIR$/portal_alsea_mvc/PortalMVC.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Portal_Alsea_Java.iml" filepath="$PROJECT_DIR$/.idea/Portal_Alsea_Java.iml" />
     </modules>
   </component>
