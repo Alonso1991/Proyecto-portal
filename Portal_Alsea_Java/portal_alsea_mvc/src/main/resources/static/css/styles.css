@@ -666,13 +666,13 @@ progress {
   }
 }
 .row {
-  --bs-gutter-x: 1.5rem;
-  --bs-gutter-y: 0;
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: calc(-1 * var(--bs-gutter-y));
-  margin-right: calc(-0.5 * var(--bs-gutter-x));
-  margin-left: calc(-0.5 * var(--bs-gutter-x));
+  --bs-gutter-x: 1.5rem !important;
+  --bs-gutter-y: 0 !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  margin-top: calc(-1 * var(--bs-gutter-y)) !important;
+  margin-right: calc(-0.5 * var(--bs-gutter-x)) !important;
+  margin-left: calc(-2.0 * var(--bs-gutter-x)) !important;
 }
 .row > * {
   flex-shrink: 0;
@@ -2737,11 +2737,11 @@ textarea.form-control-lg {
 }
 
 .input-group {
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: stretch;
-  width: 100%;
+  position: relative !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: stretch !important;
+  width: 64% !important;
 }
 .input-group > .form-control, .input-group > .dataTable-input,
 .input-group > .form-select,
@@ -3105,9 +3105,10 @@ textarea.form-control-lg {
 }
 
 .btn-success {
-  color: #fff;
-  background-color: #198754;
-  border-color: #198754;
+  color: #fff !important;
+  background-color: #198754 !important;
+  border-color: #198754 !important;
+  float: right !important;
 }
 .btn-success:hover {
   color: #fff;
@@ -11551,7 +11552,11 @@ body {
 }
 
 .dataTable-top {
-  padding: 0 0 1rem;
+  padding: 0 38px 1rem;
+}
+
+.table-bordered {
+  border: 24px solid #f8f9fa;
 }
 
 .dataTable-bottom {
@@ -11656,7 +11661,9 @@ body {
   position: relative;
   width: 100%;
   padding-right: 1rem;
+  color: #adb5bd !important;
 }
+
 
 .dataTable-sorter::before,
 .dataTable-sorter::after {
@@ -11701,8 +11708,10 @@ body {
   border-radius: 0.25rem !important;
 }
 .table thead{
-	background: linear-gradient(to right, #4A00E0, #8E2DE2);
+	background: linear-gradient(to right, #343a40, #343a40);
 	color:black;
 	}
 
+.tienda{
 
+}

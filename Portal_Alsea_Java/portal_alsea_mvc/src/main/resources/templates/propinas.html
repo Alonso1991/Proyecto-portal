@@ -54,7 +54,7 @@
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
                    aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" th:href="@{login/}">Logout</a></li>
+                    <li><a class="dropdown-item" th:href="@{/logout}">Logout</a></li>
                 </ul>
             </li>
         </ul>
@@ -178,7 +178,7 @@
 
                                     <!--/*@thymesVar id="listTiendas" type="com.alsea.portal.portalmvc.controller.PropinasController"*/-->
                                     <div class="input-group">
-                                        <select class="form-control" name="tienda" required>
+                                        <select id="tienda" class="form-control" name="tienda" required style="margin-right:76%;height:40px;">
                                             <option type="text" th:each="list : ${listTiendas}"
                                                     th:text="${list.tiendas}"
                                                     th:value="${list.id}"> Tienda
@@ -197,7 +197,7 @@
                             <!--/*@thymesVar id="prop" type="com.alsea.portal.portalmvc.controller"*/-->
                             <button class="btn btn-success" type="button"
                                     onclick="tableToExcel('datatablesSimple', 'Propinas')" value="Export to Excel">
-                                Exporta a Excel
+                                Exportar Resultados a Excel
                             </button>
 
                             <table id="datatablesSimple" class="table table-bordered  display nowrap" cellspacing="0"
@@ -274,8 +274,8 @@
             language: "es",
             format: 'DD/MM/YYYY A'
         }
-    }, function(start, end, label) {
-        $('#initDate .form-control').val( start.format('DD/MM/YYYY A') + ' / ' + end.format('DD/MM/YYYY  A'));
+    }, function(start, end) {
+        //$('#initDate .form-control').val( start.format('DD/MM/YYYY A') + ' / ' + end.format('DD/MM/YYYY  A'));
         $("#fecIni").val(start.format('YYYY/MM/DD'));
         $("#fecFin").val(end.format('YYYY/MM/DD'));
     });

@@ -10,6 +10,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
 import java.util.Collection;
 import java.util.Objects;
@@ -38,25 +40,37 @@ public class LoginController {
     }
 
     @GetMapping("/login")
-    public String login(@RequestParam(value="error", required=false) String error,
-                        @RequestParam(value="logout", required = false) String logout,
+    public String login( HttpServletRequest request, HttpServletResponse response,
+                        @RequestParam(value="error", required=false) String error,
                         Model model, Principal principal, RedirectAttributes flash) {
+
+
+        if(error != null) {
+            model.addAttribute("error", "Error de autentificacion: Nombre de usuario o contraseña incorrecta, por favor intente nuevamente!");
+            return "login";
+        }
 
         if(principal != null) {
             flash.addFlashAttribute("info", "Ud ya inicio sesión");
             return "redirect:/home";
         }
 
-        if(error != null) {
-            model.addAttribute("error", "Error de autentificacion: Nombre de usuario o contraseña incorrecta, por favor intente nuevamente!");
-        }
-
-        if(logout != null) {
-            model.addAttribute("success", "Ha cerrado sesión con éxito!");
-        }
-
         return "login";
     }
+
+
+    @GetMapping("/logout")
+    public String logout( HttpServletRequest request, HttpServletResponse response,
+                         @RequestParam(value="error", required=false) String error,
+                         @RequestParam(value="logout", required=false) String logout,
+                         Model model, Principal principal, RedirectAttributes flash) {
+        model.addAttribute("success", "Ha cerrado sesión con éxito!");
+        SecurityContextHolder.clearContext();                                                // Obtenemos el contexto de seguridad y limpiamos la autenticación actual
+        SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();     // Creamos un manejador de cierre de sesión
+        logoutHandler.logout(request, response, null);                          // Cerramos la sesión del usuario
+        return "redirect:/login";
+    }
+
 
     @RequestMapping(value = {"/home", "/"}, method = RequestMethod.GET)
     public String index(Model model,
